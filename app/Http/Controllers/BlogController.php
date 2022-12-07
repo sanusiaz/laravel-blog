@@ -37,6 +37,19 @@ class BlogController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        // validate request
+        $this->validate($request, [
+            'title' => 'required|max:255|string|unique:posts,title',
+            'slug' => 'required|max:255',
+            'image' => 'required|image',
+            'body'  => 'required|text',
+            'excerpt' => 'required|text',
+            'status' => 'required|max:255'
+        ]);
+    }
+
 
     public function create()
     {
