@@ -16,7 +16,7 @@ Route::get("/posts", [\App\Http\Controllers\PostsController::class, 'index']);
 
 Route::get("/", \App\Http\Controllers\HomeController::class);
 
-Route::get("/blog", [\App\Http\Controllers\BlogController::class, 'index']);
+Route::get("/blog", [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
 Route::get("/blog/{post}", [\App\Http\Controllers\BlogController::class, 'show'])
     ->whereNumber('post')
     ->name('blog.show');
@@ -26,7 +26,7 @@ Route::get("/blog/create", [\App\Http\Controllers\BlogController::class, 'create
 
 // Post 
 Route::post("/blog", [\App\Http\Controllers\BlogController::class, 'store'])
-    ->name('blog.index');
+    ->name('blog.store');
 
 // Put and Patch 
 Route::put("/blog/{id}/{slug}", [\App\Http\Controllers\BlogController::class, 'update'])

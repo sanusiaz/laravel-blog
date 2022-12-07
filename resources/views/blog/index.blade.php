@@ -2,12 +2,19 @@
 @extends('layouts.app')
 
 @section('contents')
-    <header class="text-center px-5 text-2xl text-white font-semibold capitalize py-8">
-        Showing all blogs
-    </header>
-    <main class="min-w-fit w-2/3 m-auto">
+<main class="min-w-fit w-2/3 m-auto">
+    <div class=" mx-auto">
+        <div class="text-center pt-10">
+            <h1 class="text-2xl text-gray-700">
+                All Articles
+            </h1>
+            <hr class="border border-1 border-gray-300 mt-10 mb-10">
+        </div>
+
+        
+    </div>
         <a href="{{ route('blog.create') }}" class="text-sm font-semibold text-white bg-blue-700 transition-all duration-200 hover:bg-blue-900 hover:duration-200 rounded-lg  px-5 py-3">
-            Create New Blog
+            Create New Article
         </a>
 
         {{-- show all blogs / posts --}}
@@ -22,7 +29,7 @@
                 {{-- Check if the first pst has been hit --}}
 
                 <div class="bg-white shadow-lg border-2 rounded-lg mt-1 mb-3 py-4 px-5 @if($loop->first) bg-blue-500 border-yellow-700 @else border-gray-300 @endif">
-                    <p class="text-black font-semibold text-xl block leading-8">{{ $post->title }}</p>
+                    <a href="{{ route('blog.show', [$post->id]) }}" class="text-black font-semibold text-xl block leading-8">{{ $post->title }}</a>
 
                     <div class="flex gap-8 flex-col mb-2 relative">
                         <p class="block relative">{{ $post->excerpt }}...</p>

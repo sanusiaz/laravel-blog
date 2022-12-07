@@ -2,37 +2,49 @@
 @extends('layouts.app')
 
 @section('contents')
-    
-    <main class="w-2/3 overflow-hidden m-auto">
-        <div class="flex justify-between p-2">
-            @if($prevBlog !== null)
-                <a href="{{ route('blog.show', [$prevBlog]) }}" class="py-2 px-4 rounded-lg text-sm text-white font-semibold bg-blue-600 hover:bg-blue-800 duration-200 hover:duration-200">Prev</a>
-            @endif
+<div class="w-4/5 mx-auto">
 
-            @if($nextBlog !== null)
-            <a href="{{ route('blog.show', [$nextBlog]) }}" class="py-2 px-4 rounded-lg text-sm text-white font-semibold bg-blue-600 hover:bg-blue-800 duration-200 hover:duration-200">Next</a>
+    <div class="flex justify-between p-2">
+        @if($prevBlog !== null)
+            <a href="{{ route('blog.show', [$prevBlog]) }}" class="py-2 px-4 rounded-lg text-sm text-white font-semibold bg-blue-600 hover:bg-blue-800 duration-200 hover:duration-200">Prev</a>
         @endif
+
+        @if($nextBlog !== null)
+        <a href="{{ route('blog.show', [$nextBlog]) }}" class="py-2 px-4 rounded-lg text-sm text-white font-semibold bg-blue-600 hover:bg-blue-800 duration-200 hover:duration-200">Next</a>
+    @endif
+    </div>
+
+    {{-- Featured Image --}}
+    <img class="block relative my-5 max-w-xl object-contain" src="{{ $post->image_path }}" alt="">
+
+    <h4 class="text-left font-Poppins uppercase sm:text-left text-2xl font-bold text-gray-900 py-10 sm:py-20">
+        {{ $post->title }}
+    </h4>
+
+    <div class="block lg:flex flex-row">
+        <div class="basis-9/12 text-center sm:block sm:text-left">
+            <span class="text-left sm:inline block text-gray-900 pb-10 sm:pt-0 pt-0 sm:pt-10 pl-0 sm:pl-4 -mt-8 sm:-mt-0">
+                Made by:
+                <a
+                    href=""
+                    class="font-bold text-green-500 italic hover:text-green-400 hover:border-b-2 border-green-400 pb-3 transition-all py-20">
+                    Code With Dary
+                </a>
+                &nbsp;
+                Created: 
+                {{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }}
+            </span>
         </div>
+    </div>
 
-        {{-- Featured Image --}}
-        <img class="block relative my-5 max-w-xl object-contain" src="{{ $post->image_path }}" alt="">
+    <div class="pt-10 pb-10 text-gray-900 text-xl">
+        <p class="font-bold text-2xl text-black pt-10">
+            {{ $post->excerpt }}
+        </p>
 
-        {{-- Posts title --}}
-        <div class="text-left text-2xl text-slate-900 px-0 font-semibold capitalize py-8">
-            {{ $post->title }}
-        </div>
-
-        <section class="py-5">
-
-            <p class="block relative py-5 pb-10">
-                <span class="block relative text-left font-semibold text-xl">The Excerpt</span>
-                <span class="block relative">{{ $post->excerpt }}</span>
-            </p>
-            
-            <p class="block relative py-5">
-                <span class="block text-left font-semibold text-xl">The Body</span>
-                <span class="break-words block relative">{{ $post->body }}</span>
-            </p>
-        </section>
-    </main>
+        <p class="text-base text-black pt-10">
+            {{ $post->body }}
+        </p>
+    </div>
+</div>
 @endsection

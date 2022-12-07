@@ -8,8 +8,11 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
 </head>
-<body class="bg-slate-500 p-4">
+<body class="bg-slate-200 p-4 font-Inter">
     @yield('contents')
 </body>
 </html>
