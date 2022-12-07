@@ -48,6 +48,8 @@ class BlogController extends Controller
             'excerpt' => 'required|text',
             'status' => 'required|max:255'
         ]);
+
+        dd($request);
     }
 
 
