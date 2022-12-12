@@ -17,7 +17,8 @@ class Post extends Model
         'body',
         'image_path',
         'min_to_read',
-        'is_published'
+        'is_published',
+        'user_id'
     ];
 
     // protected $timestamps = false;
@@ -27,4 +28,14 @@ class Post extends Model
     //]
 
     // protected $primaryKey = "<primary key column name";
+
+    public function user()
+    {
+        $this->belongsTo(\App\Models\User::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\Comment::class);
+    }
 }

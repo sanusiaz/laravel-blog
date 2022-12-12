@@ -17,7 +17,11 @@
             List all Article
         </a>
 
-        <form action="{{ route('blog.store') }}" method="post" class="py-5 flex flex-col gap-5">
+        <form 
+            action="{{ route('blog.store') }}" 
+            method="POST" 
+            class="py-5 flex flex-col gap-5"
+            enctype="multipart/form-data">
             <label for="title" class="peer">
                 <input type="text" class="border rounded valid:outline-amber-300 px-5 text-sm py-3 placeholder:text-gray-800 w-full peer-focus:outline-red-700 invalid:outline-red-700 @error('title') border-red-700 @else border-gray-300 @enderror" placeholder="Enter Posts title" name="title" id="title">
                 @error('title')

@@ -49,3 +49,4 @@ Route::get('/post/{name}', [\App\Http\Controllers\PostsController::class, 'show'
 // fallback route
 // Route::fallback([\App\Http\Controllers\FallBackController::class, '__not_found']);
 Route::fallback(FallBackController::class);
+
