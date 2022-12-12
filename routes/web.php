@@ -24,6 +24,10 @@ Route::get("/blog/{post}", [\App\Http\Controllers\BlogController::class, 'show']
 Route::get("/blog/create", [\App\Http\Controllers\BlogController::class, 'create'])
     ->name('blog.create');
 
+Route::get('/blog/edit/{id}', [\App\Http\Controllers\BlogController::class, 'edit'])
+    ->whereNumber('id')
+    ->name('blog.edit');
+
 // Post 
 Route::post("/blog", [\App\Http\Controllers\BlogController::class, 'store'])
     ->name('blog.store');

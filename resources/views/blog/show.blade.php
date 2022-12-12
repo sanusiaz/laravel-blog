@@ -15,7 +15,7 @@
     </div>
 
     {{-- Featured Image --}}
-    <img class="block relative my-5 max-w-xl object-contain" src="{{ $post->image_path }}" alt="">
+    <img class="block relative my-5 max-w-xl object-contain" src="@if( str_contains( $post->image_path, 'https://' ) ) {{ $post->image_path }} @else {{ Storage::url($post->image_path) }} @endif">
 
     <h4 class="text-left font-Poppins uppercase sm:text-left text-2xl font-bold text-gray-900 py-10 sm:py-20">
         {{ $post->title }}
@@ -23,12 +23,12 @@
 
     <div class="block lg:flex flex-row">
         <div class="basis-9/12 text-center sm:block sm:text-left">
-            <span class="text-left sm:inline block text-gray-900 pb-10 sm:pt-0 pt-0 sm:pt-10 pl-0 sm:pl-4 -mt-8 sm:-mt-0">
+            <span class="text-left sm:inline block text-gray-900 pb-10 sm:pt-0 pt-0  pl-0 sm:pl-4 -mt-8 sm:-mt-0">
                 Made by:
                 <a
                     href=""
                     class="font-bold text-green-500 italic hover:text-green-400 hover:border-b-2 border-green-400 pb-3 transition-all py-20">
-                    Code With Dary
+                    {{-- {{ $post->user->name }} --}}
                 </a>
                 &nbsp;
                 Created: 

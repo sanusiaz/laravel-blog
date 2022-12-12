@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -38,39 +39,56 @@ class BlogController extends Controller
             'title' => 'required|max:255|string|unique:posts,title',
             'slug' => 'required|max:255|unique:posts,slug',
             'image' => 'required|mimes:png,jpeg,jpg,gif,svg',
-            'body'  => 'required|text',
-            'excerpt' => 'required|text',
+            'body'  => 'required',
+            'excerpt' => 'required',
             'status' => 'required|max:255'
         ]);
 
         if ( $request->has('image') && $request->file('image') !== null )
         {
-            $imageFullPath = Storage::putFile(storage_path() . '/images', $request->file('image'));
+            // store images in storage/app/images folder
+            $imageFullPath = Storage::putFile('/public/images', $request->file('image'));
         }
 
-        dd($imageFullPath);
-
+        // select random user
+        $user = User::inrandomOrder()->first();
 
         Post::create([
-            'title' => $request->title,
-            'slug' => $request->slug,
-            'status' => $request->status,
-            'excerpt' => $request->excerpt,
-            'body' => $request->body,
-            'image_path' => $imageFullPath,
-            'min_to_read' => rand(10, 100),
-            'is_published' => ( $request->status === 'published' ) ? 1 : 0
+            'title'         => $request->title,
+            'slug'          => $request->slug,
+            'status'        => $request->status,
+            'excerpt'       => $request->excerpt,
+            'body'          => $request->body,
+            'image_path'    => $imageFullPath,
+            'min_to_read'   => rand(10, 100),
+            'is_published'  => ( $request->status === 'published' ) ? 1 : 0,
+            'user_id'       => $user->id
         ]);
 
-        return back()->with('success');
-
-        dd($request);
+        return back()->with('success', 'Post Has been created successfully');
     }
 
 
     public function create()
     {
-        return view('blog.create');
+        return view('blog.create', [
+            'post' => new Post()
+        ]);
+    }
+
+
+    /**
+     * Edit each of the post
+     *
+     * @param Post $post
+     * @return void
+     */
+    public function edit($id)
+    {   
+        $post = Post::where('id', $id)->firstOrFail();
+        return view('blog.edit', [
+            'post' => $post
+        ]);
     }
 
     /**

@@ -6,7 +6,7 @@
     <div class=" mx-auto">
         <div class="text-center pt-10">
             <h1 class="text-2xl text-gray-700">
-                Create New Article
+                Edit Artice {{ $post->title }}
             </h1>
             <hr class="border border-1 border-gray-300 mt-10 mb-10">
         </div>
@@ -18,7 +18,7 @@
         </a>
 
         <form 
-            action="{{ route('blog.store') }}" 
+            action="{{ route('blog.update', [$post->id]) }}" 
             method="POST" 
             class="py-5 flex flex-col gap-5"
             enctype="multipart/form-data">

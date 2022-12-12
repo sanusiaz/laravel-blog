@@ -28,21 +28,24 @@
             @forelse ($posts as $post)
                 {{-- Check if the first pst has been hit --}}
 
-                <div class="bg-white shadow-lg border-2 rounded-lg mt-1 mb-3 py-4 px-5 @if($loop->first) bg-blue-500 border-yellow-700 @else border-gray-300 @endif">
-                    <a href="{{ route('blog.show', [$post->id]) }}" class="text-black font-semibold text-xl block leading-8">{{ $post->title }}</a>
+                <div class="bg-white shadow-lg border-2 rounded-lg mt-1 mb-3 py-4 px-5 @if($loop->first) bg-blue-500 border-yellow-700 @else border-gray-300 @endif flex gap-3">
+                    <img class="w-60 h-40 object-contain" src="@if( str_contains( $post->image_path, 'https://' ) ) {{ $post->image_path }} @else {{ Storage::url($post->image_path) }} @endif" alt="{{ $post->title }}">
+                    <div>
+                        <a href="{{ route('blog.show', [$post->id]) }}" class="text-black font-semibold text-xl block leading-8">{{ $post->title }}</a>
 
-                    <div class="flex gap-8 flex-col mb-2 relative">
-                        <p class="block relative">{{ $post->excerpt }}...</p>
-                        <dix class="flex flex-col gap-2 ">
-                            <a href="/blog/{{ $post->id }}" class="text-sm font-semibold text-white capitalize px-3 py-2 rounded bg-purple-800 hover:bg-purple-600 duration-200 w-max hover:duration-200 block relative" target="_blank">Read More</a>
-                            <p class="block text-xs relative">
-                                {{ $post->min_to_read }} Mins to read... Start Now.
-                            </p>
-
-                            <p class="block text-xs relative">
-                                {{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }}
-                            </p>
-                        </dix>
+                        <div class="flex gap-8 flex-col mb-2 relative">
+                            <p class="block relative">{{ $post->excerpt }}...</p>
+                            <dix class="flex flex-col gap-2 ">
+                                <a href="/blog/{{ $post->id }}" class="text-sm font-semibold text-white capitalize px-3 py-2 rounded bg-purple-800 hover:bg-purple-600 duration-200 w-max hover:duration-200 block relative" target="_blank">Read More</a>
+                                <p class="block text-xs relative">
+                                    {{ $post->min_to_read }} Mins to read... Start Now.
+                                </p>
+    
+                                <p class="block text-xs relative">
+                                    {{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }}
+                                </p>
+                            </dix>
+                        </div>
                     </div>
                 </div>
               
