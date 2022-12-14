@@ -46,5 +46,9 @@
             {{ $post->body }}
         </p>
     </div>
+
+    <a href="{{ route('blog.edit', [$post->id]) }}" class="bg-blue-800 transiton-all hover:bg-blue-600 duration-200 hover:duration-200 py-3 cursor-pointer text-sm text-white font-semibold font-Poppins rounded border border-blue-600 w-max px-7">
+        Edit Post
+    </a>
 </div>
 @endsection
