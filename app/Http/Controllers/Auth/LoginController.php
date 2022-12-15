@@ -34,4 +34,14 @@ class LoginController extends Controller
 
         return back()->with('error', 'Invalid Credentials');
     }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function store(Request $request)
+    {
+        dd($request);
+    }
 }

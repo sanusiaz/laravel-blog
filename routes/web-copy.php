@@ -61,5 +61,3 @@ Route::get("/", \App\Http\Controllers\HomeController::class);
 // fallback route
 Route::fallback(FallBackController::class);
 
-
-require dirname(__FILE__) . '/auth.php';

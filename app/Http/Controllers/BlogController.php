@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\BlogRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -32,17 +33,8 @@ class BlogController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
-        // validate request
-        $this->validate($request, [
-            'title' => 'required|max:255|string|unique:posts,title',
-            'slug' => 'required|max:255|unique:posts,slug',
-            'image' => 'required|mimes:png,jpeg,jpg,gif,svg',
-            'body'  => 'required',
-            'excerpt' => 'required',
-            'status' => 'required|max:255'
-        ]);
 
         if ( $request->has('image') && $request->file('image') !== null )
         {
@@ -94,20 +86,11 @@ class BlogController extends Controller
     /**
      * Update Blog
      *
-     * @param Request $request
+     * @param BlogRequest $request
      * @return void
      */
-    public function update( Request $request, int $id )
-    {
-
-        $this->validate($request, [
-            'title' => 'sometimes|max:255|string',
-            'slug' => 'sometimes|max:255',
-            'image' => 'sometimes|mimes:png,jpeg,jpg,gif,svg',
-            'body'  => 'sometimes',
-            'excerpt' => 'sometimes',
-            'status' => 'sometimes|max:255'
-        ]);        
+    public function update( BlogRequest $request, int $id )
+    {    
 
         // check if request has images 
         if ( $request->has('image') && $request->file('image') !== null )
