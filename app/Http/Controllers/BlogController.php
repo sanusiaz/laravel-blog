@@ -101,43 +101,51 @@ class BlogController extends Controller
     {
 
         $this->validate($request, [
-            'title' => 'sometimes|max:255|string|unique:posts,title',
-            'slug' => 'sometimes|max:255|unique:posts,slug',
+            'title' => 'sometimes|max:255|string',
+            'slug' => 'sometimes|max:255',
             'image' => 'sometimes|mimes:png,jpeg,jpg,gif,svg',
             'body'  => 'sometimes',
             'excerpt' => 'sometimes',
             'status' => 'sometimes|max:255'
-        ]);
+        ]);        
 
-        if ( request()->method() === 'PUT' )
+        // check if request has images 
+        if ( $request->has('image') && $request->file('image') !== null )
         {
-            if ( $request->has('image_path') && $request->file('image_path') !==  null )
-            {
-                // update all request 
-                Post::where('id', $request->id)
-                    ->update([
-                        'title'         => $request->title,
-                        'slug'          => $request->slug,
-                        'status'        => $request->status,
-                        'excerpt'       => $request->excerpt,
-                        'body'          => $request->body,
-                        'image_path'    => Storage::putFile('/public/images', $request->file('image_path')),
-                        'min_to_read'   => strlen( $request->body ) / 600,
-                        'is_published'  => $request->is_published,
-                        'user_id'       => auth()->user()->id
-                    ]);
-            }
+            $imageFullPath = Storage::putFile("/public/images", $request->file('image'));
+            Post::where('id', $id)->update([
+                'image_path' => $imageFullPath
+            ]);
         }
-        else
-        {
-            // handle patch method
-            foreach( $request->all() as $data )
-            {
-                dd($data);
-                // Post::where('id', $id)->update([
+        
+        // update all request 
+        Post::where('id', $request->id)
+            ->update([
+                'title'         => $request->title,
+                'slug'          => $request->slug,
+                'status'        => $request->status,
+                'excerpt'       => $request->excerpt,
+                'body'          => $request->body,
+                'min_to_read'   => ceil(strlen( $request->body ) / 600),
+                'is_published'  => ( $request->status === 'published' ) ? 1 : 0,
+            ]);
 
-                // ]);
-            }
-        }
+        
+        return back()->with('success', 'Article has been updated successfully');
+               
+    }
+
+
+    /**
+     * Delete Posts / Article
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function destroy(int $id)
+    {
+        Post::destroy($id);
+
+        return redirect('/blog')->with('error', 'Article/Post has been deleted');
     }
 }

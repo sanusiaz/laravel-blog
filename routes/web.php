@@ -37,13 +37,13 @@ Route::group(["prefix" => 'blog', "namespace" => "\App\Http\Controllers"], funct
         ->whereAlpha('slug')
         ->name('blog.update');
     
-    Route::patch("/{id}", ['uses', 'BlogController@update'])
+    Route::patch("/{id}", ['uses' => 'BlogController@update'])
         ->whereNumber('id')
         ->name('blog.update');
     
-    Route::delete("/{id}", ['uses', 'BlogController@destroy'])
+    Route::delete("/{id}", ['uses' => 'BlogController@destroy'])
         ->whereNumber('id')
-        ->name('blog.destroy');
+        ->name('blog.delete');
 });
 
 
@@ -57,9 +57,6 @@ Route::group(["prefix" => 'post', "namespace" => "\App\Http\Controllers"], funct
 });
 
 Route::get("/", \App\Http\Controllers\HomeController::class);
-
-
-
 
 // fallback route
 Route::fallback(FallBackController::class);

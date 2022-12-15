@@ -36,7 +36,18 @@
                         <div class="flex gap-8 flex-col mb-2 relative">
                             <p class="block relative">{{ $post->excerpt }}...</p>
                             <dix class="flex flex-col gap-2 ">
-                                <a href="/blog/{{ $post->id }}" class="text-sm font-semibold text-white capitalize px-3 py-2 rounded bg-purple-800 hover:bg-purple-600 duration-200 w-max hover:duration-200 block relative" target="_blank">Read More</a>
+                                <div class="flex gap-3">
+                                    <a href="/blog/{{ $post->id }}" class="text-sm font-semibold text-white capitalize px-3 py-2 rounded bg-purple-800 hover:bg-purple-600 duration-200 w-max hover:duration-200 block relative" target="_blank">Read More</a>
+
+                                {{-- Delete post --}}
+                                <form method="POST" action="{{ route('blog.delete', [$post->id]) }}" class="block relative">
+
+                                    @method('DELETE')
+                                    <button type="submit" class="text-sm font-semibold text-white bg-red-600 px-4 py-2 rounded border border-red-600">Delete</button>
+
+                                    @csrf
+                                </form>
+                                </div>
                                 <p class="block text-xs relative">
                                     {{ $post->min_to_read }} Mins to read... Start Now.
                                 </p>

@@ -24,6 +24,9 @@
             enctype="multipart/form-data">
             
             @include('blog.form')
+
+            <button type="submit" class="bg-green-700 text-sm font-semibold text-white transition-all duration-200 hover:duration-200 hover:bg-green-900 py-2 rounded-lg px-5 w-max">Create</button>
+
         </form>
     </main>
 

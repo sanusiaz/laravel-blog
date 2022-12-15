@@ -50,5 +50,14 @@
     <a href="{{ route('blog.edit', [$post->id]) }}" class="bg-blue-800 transiton-all hover:bg-blue-600 duration-200 hover:duration-200 py-3 cursor-pointer text-sm text-white font-semibold font-Poppins rounded border border-blue-600 w-max px-7">
         Edit Post
     </a>
+
+    {{-- Delete post --}}
+    <form method="POST" action="{{ route('blog.delete', [$post->id]) }}" class="block relative py-3 my-2">
+
+        @method('DELETE')
+        <button type="submit" class="text-sm font-semibold text-white bg-red-600 px-4 py-2 rounded border border-red-600">Delete</button>
+
+        @csrf
+    </form>
 </div>
 @endsection

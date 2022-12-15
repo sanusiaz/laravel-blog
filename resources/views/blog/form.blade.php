@@ -16,9 +16,9 @@
 <label for="status" class="peer">
 
     <select class="border @error('status') border-red-700 @else border-gray-300 @enderror rounded valid:outline-amber-300 px-5 text-sm py-3 placeholder:text-gray-800 w-full peer-focus:outline-red-700 invalid:outline-red-700" placeholder="Enter Posts title" name="status" id="status">
-        <option value="" selected disabled>Please Select an Option</option>
-        <option value="published">Published</option>
-        <option value="drafts">Drafts</option>
+        <option value="" disabled>Please Select an Option</option>
+        <option @if($post->status !== null && strtolower($post->status) === 'published') selected @endif value="published">Published</option>
+        <option @if($post->status !== null && strtolower($post->status) === 'drafts') selected @endif value="drafts">Drafts</option>
     </select>
 
     @error('status')
@@ -50,6 +50,6 @@
     @enderror
 </label>
 
-<button type="submit" class="bg-green-700 text-sm font-semibold text-white transition-all duration-200 hover:duration-200 hover:bg-green-900 py-2 rounded-lg px-5 w-max">Create</button>
 
 @csrf
+
