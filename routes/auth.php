@@ -11,4 +11,11 @@ Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'
 Route::get('register', [\App\Http\Controllers\Auth\LoginController::class, 'register'])
     ->name('auth.register');
 Route::post('register', [\App\Http\Controllers\Auth\LoginController::class, 'store'])
-    ->name('auth.sore');
+    ->name('auth.store');
+
+// forget password route
+Route::get('/forget_password', [\App\Http\Controllers\Auth\LoginController::class, 'forget_password'])
+    ->name('auth.forget_password');
+
+Route::post('/forget_password', [\App\Http\Controllers\Auth\LoginController::class, 'change_password'])
+    ->name('auth.change_password');

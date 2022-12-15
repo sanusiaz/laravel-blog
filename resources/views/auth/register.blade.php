@@ -24,7 +24,7 @@
 
 
             <label for="password" class="password">
-                <input type="text" class="border-2 rounded valid:focus:border-amber-300 px-5 text-sm py-3 placeholder:text-gray-800 w-full outline-none peer-focus:border-red-700 invalid:focus:border-red-700 @error('password') border-red-700 @else border-gray-300 @enderror" placeholder="Enter your password" name="password" id="password">
+                <input type="password" class="border-2 rounded valid:focus:border-amber-300 px-5 text-sm py-3 placeholder:text-gray-800 w-full outline-none peer-focus:border-red-700 invalid:focus:border-red-700 @error('password') border-red-700 @else border-gray-300 @enderror" placeholder="Enter your password" name="password" id="password">
                 @error('password')
                     <span class="text-xs text-red-600 mb-2">{{ $message }}</span>
                 @enderror
@@ -35,6 +35,11 @@
             </label>
 
             @csrf
+
+            <div class="flex p-1 text-sm w-full justify-between">
+                <a href="{{ route('auth.index') }}" class="text-blue-600 underline">Login to your account</a>
+                <a href="{{ route('auth.forget_password') }}" class="text-blue-600 underline">Change Password</a>
+            </div>
         </form>
     </section>
 </main>

@@ -24,6 +24,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make(Str::random(20)), // password
             'remember_token' => Str::random(10),
+            'vkey'          => Str::random(20)
         ];
     }
 

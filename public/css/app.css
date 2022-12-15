@@ -765,6 +765,9 @@ video {
 .p-4{
   padding: 1rem;
 }
+.p-1{
+  padding: 0.25rem;
+}
 .px-5{
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -931,6 +934,21 @@ video {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
+.text-blue-300{
+  --tw-text-opacity: 1;
+  color: rgb(147 197 253 / var(--tw-text-opacity));
+}
+.text-blue-700{
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
+}
+.text-blue-600{
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+.underline{
+  text-decoration-line: underline;
+}
 .shadow-lg{
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -1006,6 +1024,10 @@ video {
 .placeholder\:text-gray-800::placeholder{
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+.checked\:bg-amber-600:checked{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 119 6 / var(--tw-bg-opacity));
 }
 .valid\:border-amber-300:valid{
   --tw-border-opacity: 1;
@@ -1112,6 +1134,10 @@ video {
 }
 .peer:focus ~ .peer-focus\:outline-red-700{
   outline-color: #b91c1c;
+}
+.aria-checked\:bg-amber-300[aria-checked="true"]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 211 77 / var(--tw-bg-opacity));
 }
 @media (min-width: 640px){
 
