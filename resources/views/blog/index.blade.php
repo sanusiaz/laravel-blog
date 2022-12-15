@@ -61,7 +61,7 @@
                 </div>
               
             @empty
-                <b class="font-semibold text-center py-5 text-white">No Posts Found</b>
+                <b class="font-semibold text-center py-5 text-black font-Outfit text-3xl flex place-content-center place-items-center w-full h-[200px] md:h-[300px] ld:h-[400px]">No Article :(</b>
             @endforelse
             
             @if($posts->hasPages())

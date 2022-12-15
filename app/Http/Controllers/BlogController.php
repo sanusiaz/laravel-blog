@@ -60,12 +60,12 @@ class BlogController extends Controller
             'excerpt'       => $request->excerpt,
             'body'          => $request->body,
             'image_path'    => $imageFullPath,
-            'min_to_read'   => rand(10, 100),
+            'min_to_read'   => ceil(strlen( $request->body ) / 600),
             'is_published'  => ( $request->status === 'published' ) ? 1 : 0,
             'user_id'       => $user->id
         ]);
 
-        return back()->with('success', 'Post Has been created successfully');
+        return redirect('/blog')->with('success', 'Post Has been created successfully');
     }
 
 
