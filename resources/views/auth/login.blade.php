@@ -21,7 +21,7 @@
 
                 <small class="text-xs text-slate-500 ">
                     Password must be at least 8 characters long <br>
-                    at least one 
+                    at least one letter, one special character and one number
                 </small>
                 @error('password')
                     <span class="text-xs text-red-600 mb-2">{{ $message }}</span>
