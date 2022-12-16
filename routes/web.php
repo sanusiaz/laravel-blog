@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\LogoutController;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use App\Http\Controllers\FallBackController;
+use App\Http\Controllers\HomeController;
 
 /**
  * Get = Get a resource
@@ -12,6 +14,7 @@ use App\Http\Controllers\FallBackController;
  * Delete  -  Remove / Delete a resource 
  * Options - Ask the server the verbs that will be allowed
  */
+
 
 Route::group(["prefix" => 'blog', "namespace" => "\App\Http\Controllers"], function (){
     
@@ -56,10 +59,15 @@ Route::group(["prefix" => 'post', "namespace" => "\App\Http\Controllers"], funct
         ->name("post.show");
 });
 
-Route::get("/", \App\Http\Controllers\HomeController::class);
+Route::get("/", \App\Http\Controllers\HomeController::class)
+    ->name('home');
 
 // fallback route
 Route::fallback(FallBackController::class);
 
 
 require dirname(__FILE__) . '/auth.php';
+require dirname(__FILE__) . '/admin.php';
+
+Route::post("/logout", [LogoutController::class, 'logout']) 
+    ->name('logout');

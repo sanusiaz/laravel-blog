@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['admin'])->only('create');
+    }
+
+    
     public function index()
     {
         $posts = Post::orderBy('updated_at', 'desc')->paginate(20);
@@ -129,6 +135,6 @@ class BlogController extends Controller
     {
         Post::destroy($id);
 
-        return redirect('/blog')->with('error', 'Article/Post has been deleted');
+        return back()->with('error', 'Article/Post has been deleted');
     }
 }

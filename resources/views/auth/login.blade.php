@@ -23,7 +23,7 @@
                 @enderror
             </label>
 
-            <label for="remember_me" class="remember_me flex gap-2">
+            <label for="remember_me" class="remember_me flex gap-2 cursor-pointer">
                 <input type="checkbox" class="border-2 rounded checked:bg-amber-600 aria-checked:bg-amber-300 outline-none border-none block " name="remember_me" id="remember_me">
                 
                 <span class="block">Remember Me</span>

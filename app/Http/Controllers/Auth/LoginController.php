@@ -12,6 +12,13 @@ use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['guest']);    
+    }
+
+
     public function index()
     {
         return view('auth.login');
@@ -19,17 +26,13 @@ class LoginController extends Controller
 
     public function login(AuthRequest $request)
     {
-
         $user = User::where('email', $request->email)->first();
         if ( $user !== null )
         {
             if ( Hash::check($request->password, $user->password) )
             {
-                auth()->attempt([
-                    $request->only('email', 'password')
-                ], $request->remember_me);
-                dd('users is logged in now');
-                return redirect('/blog');
+                auth()->attempt($request->only('email', 'password'), $request->remember_me);
+                return redirect('/dashboard');
             }
         }
 
