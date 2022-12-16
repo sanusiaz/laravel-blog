@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
@@ -15,6 +16,15 @@ class UsersController extends Controller
 
     public function index()
     {
-        return view('admin.users');
+        return view('admin.users', [
+            'users' => User::paginate(20)
+        ]);
+    }
+
+    public function destroy( $id)
+    {
+        User::where('id', $id)->delete();
+
+        return back()->with('error', 'User has been deleted successfully');
     }
 }
