@@ -7,7 +7,10 @@
     <main>
         @include('layouts.header')
 
-        <a href="{{ route('user.create') }}" class="text-white font-semibold text-sm rounded bg-purple-600 hover:bg-purple-700 transition-all duration-200 hover:duration-200">Add New User</a>
+        <section class="p-4">
+            <a href="{{ route('user.create') }}" class="text-white font-semibold text-sm rounded bg-purple-600 hover:bg-purple-700 transition-all duration-200 hover:duration-200 py-3 px-5 block relative w-max mt-4">Add New User</a>
+        </section>
+
         @if( isset($users) )
             <section class="p-4">
                 <table class="w-full border border-gray-300 rounded-lg p-2 bg-white shadow-sm">

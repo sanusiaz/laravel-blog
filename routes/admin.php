@@ -16,5 +16,8 @@ Route::get('dashboard', [DashboardController::class, 'index']);
 Route::get('/admin/users', [UsersController::class, 'index'])
     ->name('admin.users');
 
+Route::get('/admin/users/create', [UsersController::class, 'create'])
+    ->name('user.create');
+
 Route::delete('/users/{id}', [UsersController::class, 'destroy'])
     ->name('users.delete');

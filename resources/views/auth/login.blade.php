@@ -19,7 +19,7 @@
             <label for="password" class="password">
                 <input type="password" class="border-2 rounded valid:focus:border-amber-300 px-5 text-sm py-3 placeholder:text-gray-800 w-full outline-none peer-focus:border-red-700 invalid:focus:border-red-700 @error('password') border-red-700 @else border-gray-300 @enderror" placeholder="Enter your password" name="password" id="password">
 
-                <small class="text-xs text-slate-500 ">
+                <small class="text-xs text-slate-500">
                     Password must be at least 8 characters long <br>
                     at least one letter, one special character and one number
                 </small>

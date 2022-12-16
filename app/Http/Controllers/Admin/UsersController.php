@@ -27,4 +27,11 @@ class UsersController extends Controller
 
         return back()->with('error', 'User has been deleted successfully');
     }
+
+    public function create()
+    {
+        return view('admin.users.create', [
+            'user' => new User
+        ]);
+    }
 }
