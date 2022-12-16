@@ -8,12 +8,14 @@
         @include('layouts.header')
 
 
-        <section class="p-4 max-w-fit w-1/3 m-auto h-full flex w-full">
+        <section class="p-4 max-w-fit w-1/3 m-auto h-full flex">
             <form  
             method="POST" 
+            action="{{ route('admin.store') }}"
             class="py-5 flex flex-col gap-5"
             enctype="multipart/form-data">
-
+            
+            <h2 class="font-semibold text-xl">Create a new user</h2>
             @include('admin.users.form')
             <button 
                 type="submit"

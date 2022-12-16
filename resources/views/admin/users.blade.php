@@ -27,7 +27,7 @@
                     <tbody>
                         @forelse( $users as $user )
                             <tr class="p-2 odd:bg-slate-600 odd:text-white">
-                                <td class="p-3">{{ $user->id }}</td>
+                                <td class="p-3">{{ $loop->index + 1 }}</td>
                                 <td class="p-3">{{ $user->email }}</td>
                                 <td class="p-3">{{ $user->name }}</td>
                                 <td class="p-3">{{ \Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td>

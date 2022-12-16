@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserRequest;
 
 class UsersController extends Controller
 {
@@ -17,7 +19,7 @@ class UsersController extends Controller
     public function index()
     {
         return view('admin.users', [
-            'users' => User::paginate(20)
+            'users' => User::orderBy('id', 'desc')->paginate(20)
         ]);
     }
 
@@ -33,5 +35,17 @@ class UsersController extends Controller
         return view('admin.users.create', [
             'user' => new User
         ]);
+    }
+
+    public function store(StoreUserRequest $request)
+    {
+        User::create([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'name' => $request->name
+        ]);
+
+
+        return redirect()->route('admin.users')->with('success', $request->name . ' Has Been Created Successfully');
     }
 }
